@@ -1,24 +1,19 @@
+import { produce } from "immer";
+
 export const incrementProductReducer = (
   state: any,
   payload: { type: string; quantity: number }
 ) => {
-  const draft = state[payload.type];
-  return {
-    ...state,
-    [payload.type]: { ...draft, quantity: draft.quantity + payload.quantity },
-  };
+  return produce(state, (draft: typeof state) => {
+    draft[payload.type].quantity += payload.quantity;
+  });
 };
 
 export const removeProductQuantityReducer = (
   state: any,
   payload: { type: string; quantity: number }
 ) => {
-  const draft = state[payload.type];
-  return {
-    ...state,
-    [payload.type]: {
-      ...draft,
-      quantity: draft.quantity - payload.quantity,
-    },
-  };
+  return produce(state, (draft: typeof state) => {
+    draft[payload.type].quantity -= payload.quantity;
+  });
 };
