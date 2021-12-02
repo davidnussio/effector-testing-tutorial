@@ -5,18 +5,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
+    "effector": "^22.1.2",
+    "immer": "^9.0.7",
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
+    "babel-jest": "^27.3.1",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.3.1",
+    "react-test-renderer": "^17.0.2",
     "typescript": "4.5.2"
   }
 }
