@@ -1,19 +1,20 @@
 import { produce } from "immer";
+import { CartProducts, CartProductType } from "./types";
 
 export const incrementProductReducer = (
   state: any,
-  payload: { type: string; quantity: number }
+  payload: { type: CartProductType; quantity: number }
 ) => {
-  return produce(state, (draft: typeof state) => {
+  return produce<CartProducts>(state, (draft) => {
     draft[payload.type].quantity += payload.quantity;
   });
 };
 
 export const removeProductQuantityReducer = (
   state: any,
-  payload: { type: string; quantity: number }
+  payload: { type: CartProductType; quantity: number }
 ) => {
-  return produce(state, (draft: typeof state) => {
+  return produce<CartProducts>(state, (draft) => {
     draft[payload.type].quantity -= payload.quantity;
   });
 };

@@ -11,41 +11,7 @@ import {
   incrementProductReducer,
   removeProductQuantityReducer,
 } from "./reducers";
-
-export type DeliveryCountry = "CH" | "IT";
-export type DeliveryCountryPrices = { [key in DeliveryCountry]: number };
-export type AboTypes = "standard" | "pro" | "enterprise";
-export type CartProduct = {
-  type: "sponsor" | "logo" | "graphic";
-  quantity: number;
-};
-
-export type Product = {
-  maxCards: number;
-  upgradeAbo: AboTypes;
-  abo: {
-    unitAmount: number;
-  };
-  cards: {
-    sponsor: {
-      unitAmount: number;
-    };
-    logo: {
-      unitAmount: number;
-    };
-    graphic: {
-      unitAmount: number;
-    };
-  };
-  deliveryCountry: {
-    CH: {
-      unitAmount: number;
-    };
-    IT: {
-      unitAmount: number;
-    };
-  };
-};
+import { CartProduct, CartProducts, DeliveryCountry, Product } from "./types";
 
 export const addProductQuantity = createEvent<CartProduct>();
 export const removeProductQuantity = createEvent<CartProduct>();
@@ -87,7 +53,7 @@ export const $product = createStore<Product>({
   },
 }).on(loadProductTypeFx.doneData, (_, payload) => payload);
 
-export const $cart = createStore({
+export const $cart = createStore<CartProducts>({
   sponsor: { quantity: 0 },
   logo: { quantity: 0 },
   graphic: { quantity: 0 },
