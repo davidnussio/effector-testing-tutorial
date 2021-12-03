@@ -130,12 +130,13 @@ sample({
   target: $countryDelivery,
 });
 
-guard({
-  clock: removeProductQuantity,
-  filter: sample({
+sample({
+  source: removeProductQuantity,
+  clock: guard({
     source: $cart,
     clock: removeProductQuantity,
-    fn: (cart, payload) => cart[payload.type].quantity - payload.quantity >= 0,
+    filter: (cart, payload) =>
+      cart[payload.type].quantity - payload.quantity >= 0,
   }),
   target: executeRemoveProductQuantity,
 });
